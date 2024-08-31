@@ -83,9 +83,14 @@ Here’s the installation guide formatted for a GitHub README:
    - Build the project to compile the service.
    - Run the WebSocket on localhost to start the service.
 
+   ```bash
+   cd path-to-your-directory\x64\debug
+   server5.exe
+   ```
    Alternatively, you can download the pre-built C++ service from this <a href="https://1drv.ms/f/s!AkdHHf-r9PalbFr0KDAGJWpjMH8?e=O912pd">C++ Software Link</a>. Note that running the executable file alone may require you to install the necessary Boost packages if they are not already present on your system.
 
 3. **Run the Flutter App**:
+   (Before running app eliminate the CORS restrictions imposed by your browser.)
    ```bash
    flutter run
    ```
