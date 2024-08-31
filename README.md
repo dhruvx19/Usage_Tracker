@@ -3,6 +3,7 @@
 <p align="center">
   <a href="https://youtu.be/emGc2ufve9w">Project Walkthrough</a>
 </p>
+
 ## [![Project Walkthrough](https://img.youtube.com/vi/emGc2ufve9w/maxresdefault.jpg)](https://youtu.be/emGc2ufve9w)
 
 <p align="center">
