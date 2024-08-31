@@ -3,9 +3,9 @@ import 'package:assignment/providers/websocket_provider.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-
+//pie chart to show the data from websocket cpu and ram memory
 class UsagePieChart extends StatefulWidget {
   const UsagePieChart({super.key});
 
@@ -14,9 +14,20 @@ class UsagePieChart extends StatefulWidget {
 }
 
 class _UsagePieChartState extends State<UsagePieChart> {
+  String _username = 'User';
+
   @override
   void initState() {
     super.initState();
+    _loadUsername();
+  }
+
+ //retrieve the username from shared preferences
+  void _loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _username = prefs.getString('username') ?? 'User';
+    });
   }
 
   @override
@@ -49,17 +60,18 @@ class _UsagePieChartState extends State<UsagePieChart> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Analytics',
-                    style: GoogleFonts.roboto(
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w900,
-                      color: const Color(0xFF161639),
+                      color: Color(0xFF161639),
                       fontSize: 32,
                     ),
                   ),
                   Row(
                     children: [
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
@@ -71,7 +83,7 @@ class _UsagePieChartState extends State<UsagePieChart> {
                             ),
                           ),
                           Text(
-                            'testingwj',
+                            _username,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: Color(0xFF161639),
@@ -101,33 +113,34 @@ class _UsagePieChartState extends State<UsagePieChart> {
             ),
             const SizedBox(height: 120),
             Consumer<WebSocketProvider>(
-                builder: (context, usageProvider, child) {
-              final usageModel = usageProvider.usageModel;
-              if (usageModel == null) {
-                return const CircularProgressIndicator();
-              } else {
-                return LayoutBuilder(
-                  builder: (context, constraints) {
-                    double spacing = constraints.maxWidth < 600 ? 30 : 120;
+              builder: (context, usageProvider, child) {
+                final usageModel = usageProvider.usageModel;
+                if (usageModel == null) {
+                  return const CircularProgressIndicator();
+                } else {
+                  return LayoutBuilder(
+                    builder: (context, constraints) {
+                      double spacing = constraints.maxWidth < 600 ? 30 : 120;
 
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        UsgaePieChartWidget(
-                          percentage: usageModel.cpuUsage / 100,
-                          text: "CPU",
-                        ),
-                        SizedBox(width: spacing),
-                        UsgaePieChartWidget(
-                          percentage: usageModel.ramUsage / 100,
-                          text: "RAM",
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
-            }),
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          UsgaePieChartWidget(
+                            percentage: usageModel.cpuUsage / 100,
+                            text: "CPU",
+                          ),
+                          SizedBox(width: spacing),
+                          UsgaePieChartWidget(
+                            percentage: usageModel.ramUsage / 100,
+                            text: "RAM",
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
+            ),
             const Spacer(),
           ],
         ),

@@ -73,7 +73,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   const Text(
                                     'Analytics',
                                     style: TextStyle(
-                                      fontStyle: FontStyle.italic ,
                                       fontWeight: FontWeight.w500,
                                       color: Color(0xFF161639),
                                       fontSize: 20,
@@ -84,17 +83,17 @@ class _DashBoardPageState extends State<DashBoardPage> {
                             ),
                           ),
                           const Spacer(),
-                           Padding(
+                          Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
-                                    'assets/icons/dialog.png',
-                                    height: 30,
-                                    width: 30,
-                                  ),
-                                  const SizedBox(width: 20),
+                                Image.asset(
+                                  'assets/icons/dialog.png',
+                                  height: 30,
+                                  width: 30,
+                                ),
+                                const SizedBox(width: 20),
                                 const Text(
                                   'Feedback',
                                   style: TextStyle(

@@ -1,4 +1,5 @@
-import 'package:assignment/ui/repo/user_repo.dart';
+import 'package:assignment/constants/custom_snackbar.dart';
+import 'package:assignment/repos/user_repo.dart';
 import 'package:assignment/widgets/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,63 +14,13 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final LoginService _loginService = LoginService();
   bool isProcessing = false;
 
   @override
   void initState() {
     super.initState();
     _checkLoginStatus();
-  }
-
-  void _checkLoginStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
-    if (isAuthenticated) {
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/dashboard');
-      }
-    }
-  }
-
-  Future<void> _handleLogin() async {
-    if (isProcessing) return;
-
-    setState(() {
-      isProcessing = true;
-    });
-
-    final loginService = LoginService();
-    bool success = await loginService.login(
-      _usernameController.text,
-      _passwordController.text,
-    );
-
-    // Check if the widget is still mounted before using BuildContext
-    if (mounted) {
-      setState(() {
-        isProcessing = false;
-      });
-
-      if (success) {
-        // Save login state and navigate to home
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('isAuthenticated', true);
-
-        if (mounted) {
-          Navigator.of(context).pushReplacementNamed('/dashboard');
-        }
-      } else {
-        // Show error message
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Invalid username or password'),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-      }
-    }
   }
 
   @override
@@ -157,16 +108,14 @@ class _LoginFormState extends State<LoginForm> {
               ),
               const SizedBox(height: 30),
               const Row(
-                children: [
-                  Flexible(child: TermsConditions())
-                ],
+                children: [Flexible(child: TermsConditions())],
               ),
               const SizedBox(height: 40),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _handleLogin,
+                  onPressed: _login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF161639),
                     minimumSize: const Size(double.infinity, 50),
@@ -197,4 +146,65 @@ class _LoginFormState extends State<LoginForm> {
       ),
     );
   }
+
+//check login status
+  void _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
+    if (isAuthenticated && mounted) {
+      Navigator.of(context).pushReplacementNamed('/dashboard');
+    }
+  }
+
+  //method for login and handling error ans exceptions
+  Future<void> _login() async {
+  setState(() {
+    isProcessing = true;
+  });
+
+  final username = _usernameController.text;
+  final password = _passwordController.text;
+
+  if (username.isEmpty || password.isEmpty) {
+    setState(() {
+      isProcessing = false;
+    });
+    if (mounted) {
+      CustomSnackbar.show(context, 'Both fields are required.');
+    }
+    return;
+  }
+
+  try {
+    final isSuccess = await _loginService.login(username, password);
+
+    if (mounted) {
+      if (isSuccess) {
+        // Save the username and authentication status
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('isAuthenticated', true);
+        //save the username to use in the dashboard page
+        await prefs.setString('username', username);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            Navigator.pushReplacementNamed(context, '/dashboard');
+          }
+        });
+      } else {
+        CustomSnackbar.show(context, 'Invalid username or password.');
+      }
+    }
+  } catch (e) {
+    if (mounted) {
+      CustomSnackbar.show(context, 'An error occurred. Please try again later.');
+    }
+  } finally {
+    if (mounted) {
+      setState(() {
+        isProcessing = false;
+      });
+    }
+  }
+}
+
 }
