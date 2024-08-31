@@ -7,19 +7,19 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 //provider for the websocket
 class WebSocketProvider with ChangeNotifier {
-  UsageModel? _usageModel;
+  WebSocketUsageModel? _usageModel;
   final WebSocketChannel _channel = WebSocketChannel.connect(
     Uri.parse(winServiceUrl), // WebSocket endpoint URL
   );
 
-  UsageModel? get usageModel => _usageModel;
+  WebSocketUsageModel? get usageModel => _usageModel;
 
   UsageProvider() {
     _channel.stream.listen(
       (data) {
         try {
           final jsonData = json.decode(data);
-          _usageModel = UsageModel.fromJson(jsonData);
+          _usageModel = WebSocketUsageModel.fromJson(jsonData);
           notifyListeners();
           print('Data received and parsed: $_usageModel');
         } catch (e, stacktrace) {

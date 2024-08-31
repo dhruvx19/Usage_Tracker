@@ -52,7 +52,6 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      // First element: Image
                       Expanded(
                         flex: 4,
                         child: Image.asset(
@@ -61,7 +60,6 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 20),
-                      // Second element: Login Form
                       const Expanded(
                         flex: 3,
                         child: Padding(

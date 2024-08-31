@@ -22,8 +22,8 @@ Widget button(
       ));
 }
 
-class RectangularButton extends StatelessWidget {
-  const RectangularButton({
+class CustomRoundedButton extends StatelessWidget {
+  const CustomRoundedButton({
     super.key,
     required this.onPressed,
     required this.label,

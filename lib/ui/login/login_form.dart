@@ -10,30 +10,8 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String _errorMessage = '';
+
   bool isChecked = false;
-
-  // void _handleLogin() {
-  //   setState(() {
-  //     _errorMessage = '';
-  //   });
-
-  //   final username = _usernameController.text;
-  //   final password = _passwordController.text;
-
-  //   if (username.isEmpty || password.isEmpty) {
-  //     setState(() {
-  //       _errorMessage = 'Please enter both username and password';
-  //     });
-  //     return;
-  //   }
-
-  //   // Navigate to the home page
-  //   Navigator.pushReplacementNamed(
-  //       context,
-  //       '/home');
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -117,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
                 obscureText: true,
                 style: const TextStyle(color: Colors.grey),
               ),
-               const SizedBox(height: 30),
+              const SizedBox(height: 30),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -139,12 +117,6 @@ class _LoginFormState extends State<LoginForm> {
                 ],
               ),
               const SizedBox(height: 40),
-             
-              if (_errorMessage.isNotEmpty)
-                Text(
-                  _errorMessage,
-                  style: const TextStyle(color: Colors.red),
-                ),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,

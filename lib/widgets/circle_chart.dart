@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class RoundedCircularProgressIndicator extends StatelessWidget {
+class UsgaePieChart extends StatelessWidget {
   final double percentage;
   final double strokeWidth;
   final Color backgroundColor;
   final Color progressColor;
   final String text;
 
-  const RoundedCircularProgressIndicator({
+  const UsgaePieChart({
     super.key,
     required this.percentage,
     this.strokeWidth = 30.0,
@@ -39,14 +39,14 @@ class RoundedCircularProgressIndicator extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  '${(percentage * 100).toStringAsFixed(1)}%', // Display the percentage
+                  '${(percentage * 100).toStringAsFixed(1)}%', 
                   style: const TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  text, // Display additional text
+                  text, 
                   style: const TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,

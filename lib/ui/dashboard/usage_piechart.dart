@@ -4,23 +4,20 @@ import 'package:assignment/widgets/window_button.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:logging/logging.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
-class RightSide extends StatefulWidget {
-  const RightSide({super.key});
+class UsagePieChart extends StatefulWidget {
+  const UsagePieChart({super.key});
 
   @override
-  State<RightSide> createState() => _RightSideState();
+  State<UsagePieChart> createState() => _UsagePieChartState();
 }
 
-class _RightSideState extends State<RightSide> {
-  final Logger _logger = Logger('RightSide');
-
+class _UsagePieChartState extends State<UsagePieChart> {
   @override
   void initState() {
     super.initState();
-    _logger.info('RightSide widget initialized');
   }
 
   @override
@@ -47,7 +44,7 @@ class _RightSideState extends State<RightSide> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
+                  Text(
                     'Analytics',
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w900,
@@ -69,7 +66,7 @@ class _RightSideState extends State<RightSide> {
                             ),
                           ),
                           Text(
-                            'User',
+                            'testingwj',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: Color(0xFF161639),
@@ -98,14 +95,12 @@ class _RightSideState extends State<RightSide> {
               ),
             ),
             const SizedBox(height: 120),
-            Consumer<WebSocketProvider>(builder: (context, usageProvider, child) {
+            Consumer<WebSocketProvider>(
+                builder: (context, usageProvider, child) {
               final usageModel = usageProvider.usageModel;
               if (usageModel == null) {
-                _logger.warning(
-                    'UsageModel is null, displaying CircularProgressIndicator');
                 return const CircularProgressIndicator();
               } else {
-                _logger.info('Displaying CPU and RAM usage');
                 return LayoutBuilder(
                   builder: (context, constraints) {
                     double spacing = constraints.maxWidth < 600 ? 30 : 120;
@@ -113,12 +108,12 @@ class _RightSideState extends State<RightSide> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        RoundedCircularProgressIndicator(
+                        UsgaePieChart(
                           percentage: usageModel.cpuUsage / 100,
                           text: "CPU",
                         ),
                         SizedBox(width: spacing),
-                        RoundedCircularProgressIndicator(
+                        UsgaePieChart(
                           percentage: usageModel.ramUsage / 100,
                           text: "RAM",
                         ),

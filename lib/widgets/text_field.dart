@@ -3,30 +3,30 @@ import 'package:flutter/material.dart';
 // Custom text field widget with styling
 Widget textField({
   required String
-      labeltext, // The text to display as the label of the text field
+      labeltext, 
   required TextInputType
-      keyboardtype, // Type of keyboard to display (e.g., text, number)
+      keyboardtype, 
   required bool
-      obscureText, // Whether to obscure text (e.g., for password fields)
+      obscureText, 
   required TextEditingController
-      controller, // Controller to manage the text input
+      controller, 
 }) {
   return Column(
     crossAxisAlignment:
-        CrossAxisAlignment.start, // Align the column's children to the start
+        CrossAxisAlignment.start, 
     children: [
       TextField(
         controller:
-            controller, // Set the controller for managing the text field
-        autofocus: false, // Do not autofocus the text field
-        keyboardType: keyboardtype, // Set the keyboard type
-        obscureText: obscureText, // Whether to obscure the text
+            controller, 
+        autofocus: false, 
+        keyboardType: keyboardtype, 
+        obscureText: obscureText, 
         decoration: InputDecoration(
-          labelStyle: const TextStyle(color: Colors.black), // Style for the label text
-          labelText: labeltext, // The label text for the text field
+          labelStyle: const TextStyle(color: Colors.black),
+          labelText: labeltext,
           border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black), // Color of the border
-            borderRadius: BorderRadius.circular(10), // Border radius
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(10), 
           ),
         ),
       ),
