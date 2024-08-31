@@ -54,29 +54,48 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.85,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: Image.asset(
-                          'assets/images/image.png',
-                          fit: BoxFit.contain,
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (constraints.maxWidth > 800) {
+                      // Layout for wider screens
+                      return ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.85,
                         ),
-                      ),
-                      const SizedBox(width: 20),
-                      const Expanded(
-                        flex: 3,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 18.0),
-                          child: LoginForm(),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 4,
+                              child: Image.asset(
+                                'assets/images/image.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                            const SizedBox(width: 20),
+                            const Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 18.0),
+                                child: LoginForm(),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
+                      );
+                    } else {
+                      // Layout for narrower screens
+                      return Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/image.png',
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(height: 20),
+                          const LoginForm(),
+                        ],
+                      );
+                    }
+                  },
                 ),
                 const SizedBox(height: 50),
               ],
