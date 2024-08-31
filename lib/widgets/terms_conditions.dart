@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-//terms and condition widget
+// Terms and condition widget
 class TermsConditions extends StatefulWidget {
   const TermsConditions({super.key});
 
@@ -10,9 +10,10 @@ class TermsConditions extends StatefulWidget {
 }
 
 class _TermsConditionsState extends State<TermsConditions> {
+  bool isChecked = false; // Move the variable here
+
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -31,17 +32,16 @@ class _TermsConditionsState extends State<TermsConditions> {
                 const TextSpan(
                   text: 'By continuing, you agree to ',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.black,
                   ),
                 ),
                 TextSpan(
                   text: 'Terms & Conditions',
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.lightBlue,
-                    decoration:
-                        TextDecoration.underline, // Optional: underline text
+                    decoration: TextDecoration.underline, // Optional: underline text
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
@@ -51,17 +51,16 @@ class _TermsConditionsState extends State<TermsConditions> {
                 const TextSpan(
                   text: ' and ',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.black,
                   ),
                 ),
                 TextSpan(
                   text: 'Privacy Policy',
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.lightBlue,
-                    decoration:
-                        TextDecoration.underline, // Optional: underline text
+                    decoration: TextDecoration.underline, // Optional: underline text
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {

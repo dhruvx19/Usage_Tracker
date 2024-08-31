@@ -158,7 +158,7 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 30),
               const Row(
                 children: [
-                  TermsConditions(),
+                  Flexible(child: TermsConditions())
                 ],
               ),
               const SizedBox(height: 40),

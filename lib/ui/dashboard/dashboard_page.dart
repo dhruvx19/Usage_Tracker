@@ -1,4 +1,3 @@
-import 'package:assignment/constants/google_icons.dart';
 import 'package:assignment/ui/dashboard/usage_piechart.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
@@ -62,17 +61,19 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                               ),
-                              child: const Row(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
-                                    GoogleIcons.analytics,
-                                    color: Color(0xFF161639),
-                                    size: 30,
+                                  Image.asset(
+                                    'assets/icons/vector.png',
+                                    height: 30,
+                                    width: 30,
                                   ),
-                                  SizedBox(width: 20),
-                                  Text(
+                                  const SizedBox(width: 20),
+                                  const Text(
                                     'Analytics',
                                     style: TextStyle(
+                                      fontStyle: FontStyle.italic ,
                                       fontWeight: FontWeight.w500,
                                       color: Color(0xFF161639),
                                       fontSize: 20,
@@ -83,18 +84,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
                             ),
                           ),
                           const Spacer(),
-                          const Padding(
-                            padding: EdgeInsets.all(20.0),
+                           Padding(
+                            padding: const EdgeInsets.all(20.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  GoogleIcons.feedback,
-                                  color: Colors.white,
-                                  size: 35,
-                                ),
-                                SizedBox(width: 20),
-                                Text(
+                                 Image.asset(
+                                    'assets/icons/dialog.png',
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  const SizedBox(width: 20),
+                                const Text(
                                   'Feedback',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
