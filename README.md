@@ -1,13 +1,31 @@
 # assignment_wijungle
 
-## [![Project Walkthrough](https://img.youtube.com/vi/mt-8j0wgWDs/maxresdefault.jpg)](https://youtu.be/mt-8j0wgWDs)
+<p align="center">
+  <a href="https://youtu.be/emGc2ufve9w">Project Walkthrough</a>
+</p>
+## [![Project Walkthrough](https://img.youtube.com/vi/emGc2ufve9w/maxresdefault.jpg)](https://youtu.be/emGc2ufve9w)
 
+<p align="center">
+  <a href="https://youtu.be/mt-8j0wgWDs">Code Walkthrough</a>
+</p>
+
+<p align="center">
+  <a href="https://youtu.be/mt-8j0wgWDs">
+    <img src="https://img.youtube.com/vi/mt-8j0wgWDs/maxresdefault.jpg" alt="Code Walkthrough" width="400"/>
+  </a>
+</p>
+
+<a href="https://1drv.ms/f/s!AkdHHf-r9PalbFr0KDAGJWpjMH8?e=O912pd">C++ Software Link</a>.
 ## Overview
 
 This project is designed to monitor and display live CPU and RAM usage on a Windows machine. The project consists of two main components:
 
-1. C++ Windows Service: This service is responsible for fetching CPU and RAM data from the machine and serving it to the Flutter app.
-2. Flutter App: This app interfaces with the C++ service to display the live CPU and RAM usage data, updating every 5 seconds.
+### Components
+
+1. **C++ Windows Service**: This service is responsible for fetching CPU and RAM data from the machine and serving it to the Flutter app. It uses WebSocket for communication and relies on the Boost library for handling network operations and other functionalities. The service is built using Visual Studio by Microsoft.
+
+2. **Flutter App**: This app interfaces with the C++ service to display live CPU and RAM usage data, updating every 5 seconds. The app connects to the C++ service via WebSocket to receive real-time updates.
+
 
 ## Components
 
@@ -29,16 +47,6 @@ This project is designed to monitor and display live CPU and RAM usage on a Wind
 2. **WebSocket Communication**: The app receives data via a WebSocket connection established by the C++ service, ensuring low-latency updates.
 3. **Cross-Platform Development**: The service is developed using C++ for Windows, and the frontend is developed using Flutter.
 
-## Figma Design
-
-- The design of the app is based on the specifications provided in a Figma document. Ensure that the final implementation closely matches the design expectations.
-
-## Expectations
-
-- **Code Quality**: Include proper comments in your code to explain the logic and flow.
-- **Responsiveness**: Ensure the Flutter app is responsive and works well across different window sizes.
-- **Functionality**: Implement all required features correctly, including login, data fetching, and live updates.
-- **Development Platform**: Develop the entire software on a Windows environment to ensure compatibility and performance.
 
 ## Libraries and Tools Used
 
@@ -56,6 +64,9 @@ This project is designed to monitor and display live CPU and RAM usage on a Wind
 - **C++ Compiler**: Required for building the Windows service.
 - **Boost Libraries**: Required for WebSocket communication.
 
+Here’s the installation guide formatted for a GitHub README:
+
+
 ### Installation
 
 1. **Clone the Repository**:
@@ -66,12 +77,20 @@ This project is designed to monitor and display live CPU and RAM usage on a Wind
 
 2. **Build the C++ Service**:
    - Navigate to the C++ service directory.
-   - Compile and install the service using your preferred C++ compiler.
+   - Open the project in Visual Studio by Microsoft.
+   - Ensure that the Boost libraries are properly installed.
+   - Build the project to compile the service.
+   - Run the WebSocket on localhost to start the service.
+
+   Alternatively, you can download the pre-built C++ service from this <a href="https://1drv.ms/f/s!AkdHHf-r9PalbFr0KDAGJWpjMH8?e=O912pd">C++ Software Link</a>. Note that running the executable file alone may require you to install the necessary Boost packages if they are not already present on your system.
 
 3. **Run the Flutter App**:
    ```bash
    flutter run
    ```
+
+
+This version is ready to be included in your GitHub README file.
 
 ### Usage
 
