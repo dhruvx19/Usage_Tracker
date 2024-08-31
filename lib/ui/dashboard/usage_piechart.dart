@@ -1,6 +1,5 @@
-import 'package:assignment/widgets/circle_chart.dart';
+import 'package:assignment/widgets/pie_chart.dart';
 import 'package:assignment/providers/websocket_provider.dart';
-import 'package:assignment/widgets/window_button.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,9 +30,15 @@ class _UsagePieChartState extends State<UsagePieChart> {
               child: Row(
                 children: [
                   Expanded(child: MoveWindow()),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 5.0, right: 8),
-                    child: WindowButtons(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0, right: 8),
+                    child: Row(
+                      children: [
+                        MinimizeWindowButton(),
+                        MaximizeWindowButton(),
+                        CloseWindowButton(),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -108,12 +113,12 @@ class _UsagePieChartState extends State<UsagePieChart> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        UsgaePieChart(
+                        UsgaePieChartWidget(
                           percentage: usageModel.cpuUsage / 100,
                           text: "CPU",
                         ),
                         SizedBox(width: spacing),
-                        UsgaePieChart(
+                        UsgaePieChartWidget(
                           percentage: usageModel.ramUsage / 100,
                           text: "RAM",
                         ),

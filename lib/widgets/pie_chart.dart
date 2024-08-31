@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class UsgaePieChart extends StatelessWidget {
+class UsgaePieChartWidget extends StatelessWidget {
   final double percentage;
   final double strokeWidth;
   final Color backgroundColor;
   final Color progressColor;
   final String text;
 
-  const UsgaePieChart({
+  const UsgaePieChartWidget({
     super.key,
     required this.percentage,
     this.strokeWidth = 30.0,
@@ -26,8 +26,8 @@ class UsgaePieChart extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CustomPaint(
-            size: Size.infinite, // Allow CustomPaint to fill the space
-            painter: _RoundedCircularProgressPainter(
+            size: Size.infinite,
+            painter: PieChartProgress(
               percentage: percentage,
               strokeWidth: strokeWidth,
               backgroundColor: backgroundColor,
@@ -39,14 +39,14 @@ class UsgaePieChart extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  '${(percentage * 100).toStringAsFixed(1)}%', 
+                  '${(percentage * 100).toStringAsFixed(1)}%',
                   style: const TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  text, 
+                  text,
                   style: const TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,
@@ -61,13 +61,13 @@ class UsgaePieChart extends StatelessWidget {
   }
 }
 
-class _RoundedCircularProgressPainter extends CustomPainter {
+class PieChartProgress extends CustomPainter {
   final double percentage;
   final double strokeWidth;
   final Color backgroundColor;
   final Color progressColor;
 
-  _RoundedCircularProgressPainter({
+  PieChartProgress({
     required this.percentage,
     required this.strokeWidth,
     required this.backgroundColor,
@@ -77,10 +77,9 @@ class _RoundedCircularProgressPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Rect rect = Offset.zero & size;
-    const double startAngle = -pi / 2; // Start at the top
-    final double sweepAngle = 2 * pi * percentage; // How much to draw
+    const double startAngle = -pi / 2;
+    final double sweepAngle = 2 * pi * percentage;
 
-    // Draw the background circle
     final Paint backgroundPaint = Paint()
       ..color = backgroundColor
       ..style = PaintingStyle.stroke
@@ -89,7 +88,6 @@ class _RoundedCircularProgressPainter extends CustomPainter {
     canvas.drawArc(
         rect.deflate(strokeWidth / 2), 0, 2 * pi, false, backgroundPaint);
 
-    // Draw the progress arc
     final Paint progressPaint = Paint()
       ..color = progressColor
       ..style = PaintingStyle.stroke

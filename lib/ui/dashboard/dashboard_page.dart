@@ -3,6 +3,7 @@ import 'package:assignment/ui/dashboard/usage_piechart.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 
+//UI for the dashboard page with charts
 class DashBoardPage extends StatefulWidget {
   const DashBoardPage({super.key});
 
@@ -15,7 +16,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WindowBorder(
-        color: const Color((0xFF805306)),
+        color: Colors.black,
         width: 2,
         child: Row(
           children: [
@@ -33,8 +34,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     stops: [0.0, 1.0],
                   ),
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(60.0),
-                    bottomRight: Radius.circular(60.0),
+                    topRight: Radius.circular(50.0),
                   ),
                 ),
                 child: Column(
@@ -113,6 +113,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 ),
               ),
             ),
+            //widget to show the pie charts for ram and cpu usage
             const UsagePieChart()
           ],
         ),

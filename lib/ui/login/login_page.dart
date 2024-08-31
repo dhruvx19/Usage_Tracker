@@ -1,5 +1,4 @@
 import 'package:assignment/ui/login/login_form.dart';
-import 'package:assignment/widgets/window_button.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,16 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: WindowTitleBarBox(
               child: Row(
-                children: [Expanded(child: Container()), const WindowButtons()],
+                children: [
+                  Expanded(child: Container()),
+                  Row(
+                    children: [
+                      MinimizeWindowButton(),
+                      MaximizeWindowButton(),
+                      CloseWindowButton(),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

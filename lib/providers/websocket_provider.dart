@@ -5,25 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 
-//provider for the websocket
+//provider to handle the websocket
 class WebSocketProvider with ChangeNotifier {
   WebSocketUsageModel? _usageModel;
   final WebSocketChannel _channel = WebSocketChannel.connect(
-    Uri.parse(winServiceUrl), // WebSocket endpoint URL
+    Uri.parse(usageUrl), // WebSocket endpoint URL
   );
 
   WebSocketUsageModel? get usageModel => _usageModel;
 
-  UsageProvider() {
+  WebSocketProvider() {
     _channel.stream.listen(
       (data) {
         try {
           final jsonData = json.decode(data);
           _usageModel = WebSocketUsageModel.fromJson(jsonData);
           notifyListeners();
-          print('Data received and parsed: $_usageModel');
+         
         } catch (e, stacktrace) {
-          print('Error parsing data: $e');
           print(stacktrace);
         }
       },
@@ -31,6 +30,7 @@ class WebSocketProvider with ChangeNotifier {
         print('WebSocket error: $error');
       },
       onDone: () {
+        //if websocket connection lost
         print('WebSocket connection closed');
       },
     );
