@@ -1,5 +1,7 @@
 # assignment_wijungle
 
+## [![Project Walkthrough](https://img.youtube.com/vi/mt-8j0wgWDs/maxresdefault.jpg)](https://youtu.be/mt-8j0wgWDs)
+
 ## Overview
 
 This project is designed to monitor and display live CPU and RAM usage on a Windows machine. The project consists of two main components:
