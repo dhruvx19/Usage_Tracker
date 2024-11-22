@@ -107,3 +107,13 @@ class LoginPage extends StatelessWidget {
   }
 }
 //mayur
+/*
+1. clone
+2. new branch in main
+3. pull
+4. changes
+5. pull
+6. Stage changes
+7. commit message
+8. commit   
+ */
